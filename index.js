@@ -63,7 +63,8 @@ class Person {
 
   toString(){ 
     Person = function(){
-        return `${this.name}, ${this.age}`;} 
+        return `${this.name}, ${this.age}`;
+        } 
       }
     }
 
@@ -83,8 +84,38 @@ class Person {
 */
 
 class Car {
-  
+  constructor (attributes){
+    this.model = attributes.model,
+    this.milesPerGallon = attributes.milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  fill(){
+    Car = function(gallons){
+    this.tank = this.tank + gallons;
+  }
 }
+
+drive(){
+  Car = function(distance){
+    const drivableMiles = this.tank * this.milesPerGallon;
+
+    if(distance <= drivableMiles){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance/this.milesPerGallon);
+  }else{
+    this.odometer = this.odometer + drivableMiles;
+    this.tank = 0;
+    return`I ran out of fuel at ${this.odometer} miles`
+            }
+          }
+  
+      }
+
+      
+}
+const ford = new Car ('ford', 25);
 
 /*
   TASK 3
@@ -99,8 +130,24 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(object){
+    this.name = object.name,
+    this.age = object.age,
+    this.Location = object.Location
+  }
+
+  speak(){
+    return`Hello my name is ${this.name}, I am from ${this.Location}`
+  }
   
 }
+
+const lambdasian = new Lambdasian({
+  name: 'Josh',
+  age: '24',
+  Location: 'Tulsa'
+});
+console.log(lambdasian.speak());
 
 /*
   TASK 4
